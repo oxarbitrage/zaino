@@ -446,6 +446,7 @@ impl NonFinalisedStateSubscriber {
 
     /// Returns the height of the latest block in the non-finalised state.
     pub async fn get_chain_height(&self) -> Result<Height, NonFinalisedStateError> {
+        /*
         let (height, _) = *self
             .heights_to_hashes
             .get_filtered_state(&HashSet::new())
@@ -454,6 +455,15 @@ impl NonFinalisedStateSubscriber {
             .ok_or_else(|| {
                 NonFinalisedStateError::MissingData("Non-finalised state is empty.".into())
             })?;
+        */
+        let height = self
+            .heights_to_hashes
+            .get_filtered_state(&HashSet::new())
+            .iter()
+            .map(|(height, _)| *height)
+            .max_by_key(|h| h.0)
+            // if empty, fall back to zero
+            .unwrap_or(Height(0));
 
         Ok(height)
     }

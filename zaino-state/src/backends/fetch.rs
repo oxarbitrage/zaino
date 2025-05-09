@@ -36,7 +36,7 @@ use crate::{
         handle_raw_transaction, IndexerSubscriber, LightWalletIndexer, ZcashIndexer, ZcashService,
     },
     local_cache::{BlockCache, BlockCacheSubscriber},
-    mempool::{Mempool, MempoolSubscriber},
+    local_cache::mempool::{Mempool, MempoolSubscriber},
     status::StatusType,
     stream::{
         AddressStream, CompactBlockStream, CompactTransactionStream, RawTransactionStream,
